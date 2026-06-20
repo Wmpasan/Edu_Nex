@@ -14,12 +14,12 @@ namespace EduNex
         {
             this.Text = "Teacher Registration";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(600, 550);
+            this.Size = new Size(845, 590);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtEmail.Text) || 
+            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtEmail.Text) ||
                 string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(txtPhoneNumber.Text))
             {
                 MessageBox.Show("Please fill all required fields", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -47,7 +47,7 @@ namespace EduNex
             };
 
             DatabaseHelper.AddTeacher(teacher);
-            MessageBox.Show("Teacher registered successfully!\n\nEmail: " + txtEmail.Text + "\nYou can now login with these credentials.", 
+            MessageBox.Show("Teacher registered successfully!\n\nEmail: " + txtEmail.Text + "\nYou can now login with these credentials.",
                 "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ClearFields();
@@ -73,6 +73,11 @@ namespace EduNex
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void lblConfirmPassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

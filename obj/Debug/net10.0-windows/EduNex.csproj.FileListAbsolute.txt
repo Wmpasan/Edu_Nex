@@ -29,3 +29,8 @@ C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\refint\EduNex
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.pdb
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.genruntimeconfig.cache
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\ref\EduNex.dll
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.Properties.Resources.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.TeacherRegistrationForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.AttendanceForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ClassManagementForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ExamForm.resources
