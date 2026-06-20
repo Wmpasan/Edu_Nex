@@ -114,7 +114,7 @@ namespace EduNex
                 Class = s.Class,
                 AttendanceCount = attendances.Count(a => a.StudentID == s.StudentID),
                 PendingFees = fees.Where(f => f.StudentID == s.StudentID && f.Status == "Pending").Sum(f => f.Amount),
-                ExamAverage = results.Where(r => r.StudentID == s.StudentID).Any() ? 
+                ExamAverage = results.Where(r => r.StudentID == s.StudentID).Any() ?
                     Math.Round(results.Where(r => r.StudentID == s.StudentID).Average(r => r.Percentage), 2) : 0
             }).ToList();
 
@@ -168,6 +168,11 @@ namespace EduNex
         private void btnPrint_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Print functionality - integrate with your printer settings", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -34,3 +34,6 @@ C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.Teache
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.AttendanceForm.resources
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ClassManagementForm.resources
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ExamForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.FeeForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.MainForm.resources
+C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.NotificationForm.resources

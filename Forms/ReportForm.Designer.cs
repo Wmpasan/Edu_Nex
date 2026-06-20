@@ -6,7 +6,6 @@ namespace EduNex
     partial class ReportForm
     {
         private System.ComponentModel.IContainer components = null;
-        private Label lblReportTitle;
         private Button btnAttendanceReport;
         private Button btnFeeReport;
         private Button btnExamReport;
@@ -26,47 +25,139 @@ namespace EduNex
 
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-
-            // Title
-            lblReportTitle = new Label { Text = "Select Report Type", Font = new Font("Arial", 14, FontStyle.Bold), Location = new Point(20, 20), AutoSize = true };
-
-            // Report Buttons
-            btnAttendanceReport = new Button { Text = "Attendance Report", Location = new Point(20, 60), Width = 150, Height = 40 };
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
+            btnAttendanceReport = new Button();
+            btnFeeReport = new Button();
+            btnExamReport = new Button();
+            btnSummaryReport = new Button();
+            btnExportToCSV = new Button();
+            btnPrint = new Button();
+            dgvReport = new DataGridView();
+            label2 = new Label();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
+            SuspendLayout();
+            // 
+            // btnAttendanceReport
+            // 
+            btnAttendanceReport.Location = new Point(21, 132);
+            btnAttendanceReport.Name = "btnAttendanceReport";
+            btnAttendanceReport.Size = new Size(170, 30);
+            btnAttendanceReport.TabIndex = 6;
+            btnAttendanceReport.Text = "Attendance Report";
+            btnAttendanceReport.UseVisualStyleBackColor = true;
             btnAttendanceReport.Click += btnAttendanceReport_Click;
-
-            btnFeeReport = new Button { Text = "Fee Report", Location = new Point(190, 60), Width = 150, Height = 40 };
+            // 
+            // btnFeeReport
+            // 
+            btnFeeReport.Location = new Point(387, 132);
+            btnFeeReport.Name = "btnFeeReport";
+            btnFeeReport.Size = new Size(170, 30);
+            btnFeeReport.TabIndex = 5;
+            btnFeeReport.Text = "Fee Report";
+            btnFeeReport.UseVisualStyleBackColor = true;
             btnFeeReport.Click += btnFeeReport_Click;
-
-            btnExamReport = new Button { Text = "Exam Report", Location = new Point(360, 60), Width = 150, Height = 40 };
+            // 
+            // btnExamReport
+            // 
+            btnExamReport.Location = new Point(790, 132);
+            btnExamReport.Name = "btnExamReport";
+            btnExamReport.Size = new Size(170, 30);
+            btnExamReport.TabIndex = 4;
+            btnExamReport.Text = "Exam Report";
+            btnExamReport.UseVisualStyleBackColor = true;
             btnExamReport.Click += btnExamReport_Click;
-
-            btnSummaryReport = new Button { Text = "Summary Report", Location = new Point(530, 60), Width = 150, Height = 40 };
+            // 
+            // btnSummaryReport
+            // 
+            btnSummaryReport.Location = new Point(20, 179);
+            btnSummaryReport.Name = "btnSummaryReport";
+            btnSummaryReport.Size = new Size(170, 30);
+            btnSummaryReport.TabIndex = 3;
+            btnSummaryReport.Text = "Summary Report";
+            btnSummaryReport.UseVisualStyleBackColor = true;
             btnSummaryReport.Click += btnSummaryReport_Click;
-
-            // Export & Print Buttons
-            btnExportToCSV = new Button { Text = "Export to CSV", Location = new Point(20, 120), Width = 150, Height = 40 };
+            // 
+            // btnExportToCSV
+            // 
+            btnExportToCSV.Location = new Point(386, 179);
+            btnExportToCSV.Name = "btnExportToCSV";
+            btnExportToCSV.Size = new Size(170, 30);
+            btnExportToCSV.TabIndex = 2;
+            btnExportToCSV.Text = "Export to CSV";
+            btnExportToCSV.UseVisualStyleBackColor = true;
             btnExportToCSV.Click += btnExportToCSV_Click;
-
-            btnPrint = new Button { Text = "Print", Location = new Point(190, 120), Width = 150, Height = 40 };
+            // 
+            // btnPrint
+            // 
+            btnPrint.Location = new Point(789, 179);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(170, 30);
+            btnPrint.TabIndex = 1;
+            btnPrint.Text = "Print";
+            btnPrint.UseVisualStyleBackColor = true;
             btnPrint.Click += btnPrint_Click;
-
-            // DataGridView
-            dgvReport = new DataGridView { Location = new Point(20, 180), Width = 940, Height = 400 };
+            // 
+            // dgvReport
+            // 
             dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            // Form Settings
-            ClientSize = new Size(1000, 650);
-            StartPosition = FormStartPosition.CenterScreen;
-            Controls.Add(lblReportTitle);
-            Controls.Add(btnAttendanceReport);
-            Controls.Add(btnFeeReport);
-            Controls.Add(btnExamReport);
-            Controls.Add(btnSummaryReport);
-            Controls.Add(btnExportToCSV);
-            Controls.Add(btnPrint);
+            dgvReport.BackgroundColor = Color.White;
+            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReport.Location = new Point(20, 225);
+            dgvReport.Name = "dgvReport";
+            dgvReport.RowHeadersWidth = 51;
+            dgvReport.Size = new Size(940, 331);
+            dgvReport.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Copperplate Gothic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(452, 46);
+            label2.Name = "label2";
+            label2.Size = new Size(387, 38);
+            label2.TabIndex = 26;
+            label2.Text = "Report Managment";
+            label2.Click += this.label2_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Bauhaus 93", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(83, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(300, 91);
+            label1.TabIndex = 25;
+            label1.Text = "EduNex";
+            label1.Click += label1_Click;
+            // 
+            // ReportForm
+            // 
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1000, 583);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(dgvReport);
+            Controls.Add(btnPrint);
+            Controls.Add(btnExportToCSV);
+            Controls.Add(btnSummaryReport);
+            Controls.Add(btnExamReport);
+            Controls.Add(btnFeeReport);
+            Controls.Add(btnAttendanceReport);
+            Name = "ReportForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Report Management";
             Load += ReportForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private Label label2;
+        private Label label1;
     }
 }

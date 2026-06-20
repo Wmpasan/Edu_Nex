@@ -57,21 +57,26 @@ namespace EduNex
             btnViewByExam = new Button();
             btnRefresh = new Button();
             dgvResults = new DataGridView();
+            label2 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
             SuspendLayout();
             // 
             // lblStudentId
             // 
             lblStudentId.AutoSize = true;
-            lblStudentId.Location = new Point(20, 20);
+            lblStudentId.BackColor = Color.Transparent;
+            lblStudentId.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblStudentId.ForeColor = Color.White;
+            lblStudentId.Location = new Point(515, 155);
             lblStudentId.Name = "lblStudentId";
-            lblStudentId.Size = new Size(82, 20);
+            lblStudentId.Size = new Size(85, 20);
             lblStudentId.TabIndex = 18;
             lblStudentId.Text = "Student ID:";
             // 
             // txtStudentId
             // 
-            txtStudentId.Location = new Point(160, 22);
+            txtStudentId.Location = new Point(655, 157);
             txtStudentId.Name = "txtStudentId";
             txtStudentId.Size = new Size(120, 27);
             txtStudentId.TabIndex = 17;
@@ -79,15 +84,18 @@ namespace EduNex
             // lblExamName
             // 
             lblExamName.AutoSize = true;
-            lblExamName.Location = new Point(503, 61);
+            lblExamName.BackColor = Color.Transparent;
+            lblExamName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblExamName.ForeColor = Color.White;
+            lblExamName.Location = new Point(41, 163);
             lblExamName.Name = "lblExamName";
-            lblExamName.Size = new Size(92, 20);
+            lblExamName.Size = new Size(95, 20);
             lblExamName.TabIndex = 16;
             lblExamName.Text = "Exam Name:";
             // 
             // txtExamName
             // 
-            txtExamName.Location = new Point(621, 61);
+            txtExamName.Location = new Point(159, 163);
             txtExamName.Name = "txtExamName";
             txtExamName.Size = new Size(150, 27);
             txtExamName.TabIndex = 15;
@@ -95,15 +103,18 @@ namespace EduNex
             // lblSubject
             // 
             lblSubject.AutoSize = true;
-            lblSubject.Location = new Point(20, 68);
+            lblSubject.BackColor = Color.Transparent;
+            lblSubject.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblSubject.ForeColor = Color.White;
+            lblSubject.Location = new Point(515, 203);
             lblSubject.Name = "lblSubject";
-            lblSubject.Size = new Size(61, 20);
+            lblSubject.Size = new Size(63, 20);
             lblSubject.TabIndex = 14;
             lblSubject.Text = "Subject:";
             // 
             // txtSubject
             // 
-            txtSubject.Location = new Point(160, 67);
+            txtSubject.Location = new Point(655, 202);
             txtSubject.Name = "txtSubject";
             txtSubject.Size = new Size(120, 27);
             txtSubject.TabIndex = 13;
@@ -111,15 +122,18 @@ namespace EduNex
             // lblMarksObtained
             // 
             lblMarksObtained.AutoSize = true;
-            lblMarksObtained.Location = new Point(20, 112);
+            lblMarksObtained.BackColor = Color.Transparent;
+            lblMarksObtained.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblMarksObtained.ForeColor = Color.White;
+            lblMarksObtained.Location = new Point(515, 247);
             lblMarksObtained.Name = "lblMarksObtained";
-            lblMarksObtained.Size = new Size(117, 20);
+            lblMarksObtained.Size = new Size(122, 20);
             lblMarksObtained.TabIndex = 12;
             lblMarksObtained.Text = "Marks Obtained:";
             // 
             // txtMarksObtained
             // 
-            txtMarksObtained.Location = new Point(160, 109);
+            txtMarksObtained.Location = new Point(655, 244);
             txtMarksObtained.Name = "txtMarksObtained";
             txtMarksObtained.Size = new Size(120, 27);
             txtMarksObtained.TabIndex = 11;
@@ -127,15 +141,15 @@ namespace EduNex
             // lblTotalMarks
             // 
             lblTotalMarks.AutoSize = true;
-            lblTotalMarks.Location = new Point(20, 154);
+            lblTotalMarks.Location = new Point(506, 325);
             lblTotalMarks.Name = "lblTotalMarks";
-            lblTotalMarks.Size = new Size(88, 20);
+            lblTotalMarks.Size = new Size(92, 20);
             lblTotalMarks.TabIndex = 10;
             lblTotalMarks.Text = "Total Marks:";
             // 
             // txtTotalMarks
             // 
-            txtTotalMarks.Location = new Point(160, 151);
+            txtTotalMarks.Location = new Point(646, 322);
             txtTotalMarks.Name = "txtTotalMarks";
             txtTotalMarks.Size = new Size(120, 27);
             txtTotalMarks.TabIndex = 9;
@@ -143,22 +157,27 @@ namespace EduNex
             // lblExamDate
             // 
             lblExamDate.AutoSize = true;
-            lblExamDate.Location = new Point(503, 107);
+            lblExamDate.BackColor = Color.Transparent;
+            lblExamDate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblExamDate.ForeColor = Color.White;
+            lblExamDate.Location = new Point(41, 209);
             lblExamDate.Name = "lblExamDate";
-            lblExamDate.Size = new Size(84, 20);
+            lblExamDate.Size = new Size(86, 20);
             lblExamDate.TabIndex = 8;
             lblExamDate.Text = "Exam Date:";
             // 
             // dtpExamDate
             // 
-            dtpExamDate.Location = new Point(621, 107);
+            dtpExamDate.Location = new Point(159, 209);
             dtpExamDate.Name = "dtpExamDate";
             dtpExamDate.Size = new Size(150, 27);
             dtpExamDate.TabIndex = 7;
             // 
             // btnAddResult
             // 
-            btnAddResult.Location = new Point(312, 86);
+            btnAddResult.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddResult.ForeColor = Color.Black;
+            btnAddResult.Location = new Point(807, 221);
             btnAddResult.Name = "btnAddResult";
             btnAddResult.Size = new Size(135, 30);
             btnAddResult.TabIndex = 6;
@@ -168,7 +187,7 @@ namespace EduNex
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(312, 154);
+            btnUpdate.Location = new Point(798, 325);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(135, 30);
             btnUpdate.TabIndex = 5;
@@ -178,9 +197,11 @@ namespace EduNex
             // 
             // btnDelete
             // 
+            btnDelete.Font = new Font("Segoe UI", 9F);
+            btnDelete.ForeColor = Color.Black;
             btnDelete.Location = new Point(240, 585);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(100, 40);
+            btnDelete.Size = new Size(135, 30);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -188,7 +209,9 @@ namespace EduNex
             // 
             // btnViewByStudent
             // 
-            btnViewByStudent.Location = new Point(312, 20);
+            btnViewByStudent.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnViewByStudent.ForeColor = Color.Black;
+            btnViewByStudent.Location = new Point(807, 155);
             btnViewByStudent.Name = "btnViewByStudent";
             btnViewByStudent.Size = new Size(135, 30);
             btnViewByStudent.TabIndex = 3;
@@ -198,7 +221,9 @@ namespace EduNex
             // 
             // btnViewByExam
             // 
-            btnViewByExam.Location = new Point(798, 79);
+            btnViewByExam.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnViewByExam.ForeColor = Color.Black;
+            btnViewByExam.Location = new Point(336, 181);
             btnViewByExam.Name = "btnViewByExam";
             btnViewByExam.Size = new Size(135, 30);
             btnViewByExam.TabIndex = 2;
@@ -208,9 +233,11 @@ namespace EduNex
             // 
             // btnRefresh
             // 
+            btnRefresh.Font = new Font("Segoe UI", 9F);
+            btnRefresh.ForeColor = Color.Black;
             btnRefresh.Location = new Point(570, 585);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(100, 40);
+            btnRefresh.Size = new Size(135, 30);
             btnRefresh.TabIndex = 1;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -219,7 +246,9 @@ namespace EduNex
             // dgvResults
             // 
             dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvResults.BackgroundColor = Color.White;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvResults.GridColor = Color.DimGray;
             dgvResults.Location = new Point(20, 308);
             dgvResults.Name = "dgvResults";
             dgvResults.RowHeadersWidth = 51;
@@ -227,10 +256,36 @@ namespace EduNex
             dgvResults.TabIndex = 0;
             dgvResults.SelectionChanged += dgvResults_SelectionChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Copperplate Gothic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(506, 66);
+            label2.Name = "label2";
+            label2.Size = new Size(350, 38);
+            label2.TabIndex = 24;
+            label2.Text = "Exam Managment";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Bauhaus 93", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(135, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(300, 91);
+            label1.TabIndex = 23;
+            label1.Text = "EduNex";
+            // 
             // ExamForm
             // 
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1000, 650);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(dgvResults);
             Controls.Add(btnRefresh);
             Controls.Add(btnViewByExam);
@@ -250,6 +305,8 @@ namespace EduNex
             Controls.Add(lblExamName);
             Controls.Add(txtStudentId);
             Controls.Add(lblStudentId);
+            Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            ForeColor = Color.White;
             Name = "ExamForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Exam Management";
@@ -259,5 +316,7 @@ namespace EduNex
             PerformLayout();
         }
 
+        private Label label2;
+        private Label label1;
     }
 }

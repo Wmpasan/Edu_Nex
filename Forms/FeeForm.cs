@@ -148,5 +148,10 @@ namespace EduNex
                 cmbStatus.SelectedItem = row.Cells[6].Value?.ToString() ?? "Pending";
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
