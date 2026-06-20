@@ -50,7 +50,7 @@ namespace EduNex
             // 
             // btnFeeReport
             // 
-            btnFeeReport.Location = new Point(387, 132);
+            btnFeeReport.Location = new Point(280, 132);
             btnFeeReport.Name = "btnFeeReport";
             btnFeeReport.Size = new Size(170, 30);
             btnFeeReport.TabIndex = 5;
@@ -60,7 +60,7 @@ namespace EduNex
             // 
             // btnExamReport
             // 
-            btnExamReport.Location = new Point(790, 132);
+            btnExamReport.Location = new Point(555, 132);
             btnExamReport.Name = "btnExamReport";
             btnExamReport.Size = new Size(170, 30);
             btnExamReport.TabIndex = 4;
@@ -80,7 +80,7 @@ namespace EduNex
             // 
             // btnExportToCSV
             // 
-            btnExportToCSV.Location = new Point(386, 179);
+            btnExportToCSV.Location = new Point(279, 179);
             btnExportToCSV.Name = "btnExportToCSV";
             btnExportToCSV.Size = new Size(170, 30);
             btnExportToCSV.TabIndex = 2;
@@ -90,7 +90,7 @@ namespace EduNex
             // 
             // btnPrint
             // 
-            btnPrint.Location = new Point(789, 179);
+            btnPrint.Location = new Point(554, 179);
             btnPrint.Name = "btnPrint";
             btnPrint.Size = new Size(170, 30);
             btnPrint.TabIndex = 1;
@@ -106,7 +106,7 @@ namespace EduNex
             dgvReport.Location = new Point(20, 225);
             dgvReport.Name = "dgvReport";
             dgvReport.RowHeadersWidth = 51;
-            dgvReport.Size = new Size(940, 331);
+            dgvReport.Size = new Size(705, 331);
             dgvReport.TabIndex = 0;
             // 
             // label2
@@ -115,12 +115,11 @@ namespace EduNex
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Copperplate Gothic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(452, 46);
+            label2.Location = new Point(337, 39);
             label2.Name = "label2";
             label2.Size = new Size(387, 38);
             label2.TabIndex = 26;
             label2.Text = "Report Managment";
-            label2.Click += this.label2_Click;
             // 
             // label1
             // 
@@ -128,7 +127,7 @@ namespace EduNex
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Bauhaus 93", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(83, 20);
+            label1.Location = new Point(12, 13);
             label1.Name = "label1";
             label1.Size = new Size(300, 91);
             label1.TabIndex = 25;
@@ -138,7 +137,7 @@ namespace EduNex
             // ReportForm
             // 
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1000, 583);
+            ClientSize = new Size(746, 583);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dgvReport);

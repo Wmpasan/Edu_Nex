@@ -18,7 +18,10 @@ namespace EduNex
         {
             this.Text = "Student Management";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(1000, 700);
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(990, 674);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             LoadStudentData();
         }
 

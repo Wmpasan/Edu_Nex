@@ -368,7 +368,7 @@ namespace EduNex
             // StudentForm
             // 
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1000, 700);
+            ClientSize = new Size(972, 627);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dgvStudents);

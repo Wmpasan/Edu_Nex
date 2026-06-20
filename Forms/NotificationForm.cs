@@ -17,7 +17,10 @@ namespace EduNex
         {
             this.Text = "Notifications";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(900, 600);
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(918, 647);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             LoadNotifications();
         }
 

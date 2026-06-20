@@ -17,7 +17,10 @@ namespace EduNex
         {
             this.Text = "Fee Management";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(1000, 600);
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(1018, 647);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             LoadFeeData();
         }
 

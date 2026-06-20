@@ -19,7 +19,10 @@ namespace EduNex
         {
             this.Text = $"EduNex - Main Dashboard - Welcome {_teacherName}";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(997, 604);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void btnStudentManagement_Click(object sender, EventArgs e)

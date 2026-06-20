@@ -273,7 +273,6 @@ namespace EduNex
             label2.Size = new Size(443, 38);
             label2.TabIndex = 26;
             label2.Text = "Class Fee Managment";
-            label2.Click += this.label2_Click;
             // 
             // label1
             // 

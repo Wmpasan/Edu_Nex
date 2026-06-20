@@ -19,7 +19,10 @@ namespace EduNex
         {
             this.Text = "Reports";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(1000, 650);
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(764, 630);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             LoadAttendanceReport();
         }
 
@@ -45,7 +48,6 @@ namespace EduNex
                 }).ToList();
 
             dgvReport.DataSource = report;
-            lblReportTitle.Text = "Attendance Report";
         }
 
         private void btnFeeReport_Click(object sender, EventArgs e)
@@ -68,7 +70,6 @@ namespace EduNex
                 }).ToList();
 
             dgvReport.DataSource = report;
-            lblReportTitle.Text = "Fee Report";
         }
 
         private void btnExamReport_Click(object sender, EventArgs e)
@@ -92,7 +93,6 @@ namespace EduNex
                 }).ToList();
 
             dgvReport.DataSource = report;
-            lblReportTitle.Text = "Exam Performance Report";
         }
 
         private void btnSummaryReport_Click(object sender, EventArgs e)
@@ -119,7 +119,6 @@ namespace EduNex
             }).ToList();
 
             dgvReport.DataSource = report;
-            lblReportTitle.Text = "Summary Report";
         }
 
         private void btnExportToCSV_Click(object sender, EventArgs e)

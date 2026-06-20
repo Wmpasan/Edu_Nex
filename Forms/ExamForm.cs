@@ -16,8 +16,10 @@ namespace EduNex
         private void ExamForm_Load(object sender, EventArgs e)
         {
             this.Text = "Exam Results Management";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(1000, 650);
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(1018, 697);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false; ;
             LoadExamData();
         }
 

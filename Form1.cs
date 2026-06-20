@@ -13,6 +13,10 @@ namespace EduNex
         {
             this.Text = "EduNex - Smart Class Management System - Login";
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+            this.Size = new Size(997, 604);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
 
             // Sample teacher data is now handled by database initialization
             // No need to reinitialize on every app load
