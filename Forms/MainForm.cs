@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlTypes;
 using System.Windows.Forms;
 
 namespace EduNex
@@ -23,6 +24,8 @@ namespace EduNex
             this.Size = new Size(997, 604);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            lblWelcomeUser.Text = $"{_teacherName}";
+            lblDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy  |  hh:mm:ss tt");
         }
 
         private void btnStudentManagement_Click(object sender, EventArgs e)
@@ -76,6 +79,12 @@ namespace EduNex
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // Fetches the current system time and updates the label text every second
+            lblDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy  |  hh:mm:ss tt");
         }
     }
 }

@@ -10,7 +10,6 @@
         private Button btnLogin;
         private Button btnClear;
         private Button btnRegister;
-        private Label lblTitle;
 
         protected override void Dispose(bool disposing)
         {
@@ -24,7 +23,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            lblTitle = new Label();
             lblEmail = new Label();
             txtEmail = new TextBox();
             lblPassword = new Label();
@@ -32,20 +30,9 @@
             btnLogin = new Button();
             btnClear = new Button();
             btnRegister = new Button();
-            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Bauhaus 93", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(56, 135);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(456, 136);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "EduNex";
             // 
             // lblEmail
             // 
@@ -63,7 +50,7 @@
             // 
             txtEmail.Location = new Point(574, 154);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(250, 27);
+            txtEmail.Size = new Size(250, 31);
             txtEmail.TabIndex = 2;
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
@@ -84,7 +71,7 @@
             txtPassword.Location = new Point(574, 224);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(250, 27);
+            txtPassword.Size = new Size(250, 31);
             txtPassword.TabIndex = 4;
             txtPassword.TextChanged += txtPassword_TextChanged;
             // 
@@ -115,24 +102,22 @@
             btnRegister.Text = "Register";
             btnRegister.Click += btnRegister_Click;
             // 
-            // label1
+            // pictureBox1
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Copperplate Gothic Light", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(100, 323);
-            label1.Name = "label1";
-            label1.Size = new Size(365, 21);
-            label1.TabIndex = 8;
-            label1.Text = "Smart Class Management System";
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-35, -21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(543, 541);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(857, 559);
-            Controls.Add(label1);
-            Controls.Add(lblTitle);
+            Controls.Add(pictureBox1);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
             Controls.Add(lblPassword);
@@ -143,11 +128,12 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private Label label1;
+        private PictureBox pictureBox1;
     }
 }
 
