@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EduNex
@@ -21,12 +24,31 @@ namespace EduNex
             this.Size = new Size(1018, 647);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+
+            // Grid text color eka Black karanawa
+            dgvFees.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvFees.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
             LoadFeeData();
         }
 
         private void LoadFeeData()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var fees = DatabaseHelper.GetAllFees();
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nemei nam (saha class ekak thiyenawanam) filter karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                fees = fees.Where(f => studentIds.Contains(f.StudentID)).ToList();
+            }
+
             dgvFees.DataSource = fees;
         }
 
@@ -49,6 +71,20 @@ namespace EduNex
             {
                 MessageBox.Show("Student not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            // --- SECURITY CHECK: Admin nemei nam wena class walata add karanna baha ---
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                if (student.Class != teacher.Class)
+                {
+                    MessageBox.Show($"Access Denied! You can only add fees for students in the '{teacher.Class}' class.",
+                                    "Class Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
 
             var fee = new Models.ClassFee
@@ -110,19 +146,55 @@ namespace EduNex
 
         private void btnViewPending_Click(object sender, EventArgs e)
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var pendingFees = DatabaseHelper.GetFeesByStatus("Pending");
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+                pendingFees = pendingFees.Where(f => studentIds.Contains(f.StudentID)).ToList();
+            }
+
             dgvFees.DataSource = pendingFees;
         }
 
         private void btnViewPaid_Click(object sender, EventArgs e)
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var paidFees = DatabaseHelper.GetFeesByStatus("Paid");
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+                paidFees = paidFees.Where(f => studentIds.Contains(f.StudentID)).ToList();
+            }
+
             dgvFees.DataSource = paidFees;
         }
 
         private void btnViewOverdue_Click(object sender, EventArgs e)
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var overdueFees = DatabaseHelper.GetFeesByStatus("Overdue");
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+                overdueFees = overdueFees.Where(f => studentIds.Contains(f.StudentID)).ToList();
+            }
+
             dgvFees.DataSource = overdueFees;
         }
 
