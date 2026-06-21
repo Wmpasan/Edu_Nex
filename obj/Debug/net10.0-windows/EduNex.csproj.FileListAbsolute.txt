@@ -39,3 +39,6 @@ C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.MainFo
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.NotificationForm.resources
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ReportForm.resources
 C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.StudentForm.resources
+C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\EduNex.dll
+C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\refint\EduNex.dll
+C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\EduNex.pdb
