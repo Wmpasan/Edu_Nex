@@ -265,7 +265,7 @@ namespace EduNex
             lblEmailError.BackColor = Color.Transparent;
             lblEmailError.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblEmailError.ForeColor = Color.White;
-            lblEmailError.Location = new Point(404, 418);
+            lblEmailError.Location = new Point(410, 287);
             lblEmailError.Name = "lblEmailError";
             lblEmailError.Size = new Size(0, 20);
             lblEmailError.TabIndex = 19;
@@ -276,7 +276,7 @@ namespace EduNex
             lblStrength.BackColor = Color.Transparent;
             lblStrength.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblStrength.ForeColor = Color.White;
-            lblStrength.Location = new Point(398, 418);
+            lblStrength.Location = new Point(404, 287);
             lblStrength.Name = "lblStrength";
             lblStrength.Size = new Size(0, 20);
             lblStrength.TabIndex = 20;

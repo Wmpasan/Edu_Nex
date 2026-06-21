@@ -17,7 +17,7 @@ namespace EduNex
         {
             this.Text = "Class Management";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(1000, 650);
+            this.Size = new Size(1018, 697);
             LoadClassData();
             PopulateTeacherDropdown();
         }

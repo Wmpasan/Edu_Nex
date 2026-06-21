@@ -19,13 +19,23 @@ namespace EduNex
             this.WindowState = FormWindowState.Normal;
             this.Size = new Size(1018, 697);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false; ;
+            this.MaximizeBox = false;
+
+           dgvResults.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
+            dgvResults.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
             LoadExamData();
         }
 
         private void LoadExamData()
         {
-            var results = DatabaseHelper.GetAllExamResults();
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nam okkoma details enawa, nethnam e teacher dapu details witharak enawa
+            var results = isAdmin ? DatabaseHelper.GetAllExamResults() : DatabaseHelper.GetExamResultsByTeacher(_teacherId);
+
             dgvResults.DataSource = results;
         }
 
@@ -174,6 +184,11 @@ namespace EduNex
                 txtMarksObtained.Text = row.Cells[5].Value?.ToString() ?? "0";
                 txtTotalMarks.Text = row.Cells[6].Value?.ToString() ?? "0";
             }
+        }
+
+        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

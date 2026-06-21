@@ -223,7 +223,7 @@ namespace EduNex
             // 
             btnViewByExam.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnViewByExam.ForeColor = Color.Black;
-            btnViewByExam.Location = new Point(336, 181);
+            btnViewByExam.Location = new Point(338, 163);
             btnViewByExam.Name = "btnViewByExam";
             btnViewByExam.Size = new Size(135, 30);
             btnViewByExam.TabIndex = 2;
@@ -246,14 +246,15 @@ namespace EduNex
             // dgvResults
             // 
             dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvResults.BackgroundColor = Color.White;
+            dgvResults.BackgroundColor = Color.DimGray;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvResults.GridColor = Color.DimGray;
+            dgvResults.GridColor = Color.White;
             dgvResults.Location = new Point(20, 308);
             dgvResults.Name = "dgvResults";
             dgvResults.RowHeadersWidth = 51;
             dgvResults.Size = new Size(940, 262);
             dgvResults.TabIndex = 0;
+            dgvResults.CellContentClick += dgvResults_CellContentClick;
             dgvResults.SelectionChanged += dgvResults_SelectionChanged;
             // 
             // label2

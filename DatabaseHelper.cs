@@ -678,7 +678,46 @@ namespace EduNex
                     {
                         while (r.Read())
                         {
-                            list.Add(new Models.ExamResult {
+                            list.Add(new Models.ExamResult
+                            {
+                                ResultID = Convert.ToInt32(r["ResultID"]),
+                                StudentID = Convert.ToInt32(r["StudentID"]),
+                                StudentName = r["StudentName"].ToString(),
+                                ExamName = r["ExamName"].ToString(),
+                                Subject = r["Subject"].ToString(),
+                                MarksObtained = Convert.ToDecimal(r["MarksObtained"]),
+                                TotalMarks = Convert.ToDecimal(r["TotalMarks"]),
+                                Percentage = Convert.ToDecimal(r["Percentage"]),
+                                Grade = r["Grade"].ToString(),
+                                ExamDate = Convert.ToDateTime(r["ExamDate"])
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            return list;
+        }
+
+        public static List<Models.ExamResult> GetExamResultsByTeacher(int teacherId)
+        {
+            List<Models.ExamResult> list = new List<Models.ExamResult>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    // We use WHERE TeacherID = @TID to only get this specific teacher's exams
+                    string query = "SELECT * FROM ExamResults WHERE TeacherID = @TID";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@TID", teacherId);
+
+                    using (MySqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            list.Add(new Models.ExamResult
+                            {
                                 ResultID = Convert.ToInt32(r["ResultID"]),
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 StudentName = r["StudentName"].ToString(),

@@ -108,6 +108,7 @@ namespace EduNex
             dgvReport.RowHeadersWidth = 51;
             dgvReport.Size = new Size(705, 331);
             dgvReport.TabIndex = 0;
+            dgvReport.CellContentClick += dgvReport_CellContentClick;
             // 
             // label2
             // 

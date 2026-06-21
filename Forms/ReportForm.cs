@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -23,6 +24,11 @@ namespace EduNex
             this.Size = new Size(764, 630);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+
+            // Grid text color eka Black karanawa
+            dgvReport.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvReport.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
             LoadAttendanceReport();
         }
 
@@ -33,7 +39,22 @@ namespace EduNex
 
         private void LoadAttendanceReport()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var attendances = DatabaseHelper.GetAllAttendances();
+
+            // Admin da kiyala check karanawa
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nemei nam (saha class ekak thiyenawanam) filter karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                attendances = attendances.Where(a => studentIds.Contains(a.StudentID)).ToList();
+            }
 
             var report = attendances.GroupBy(a => a.StudentName)
                 .Select(g => new
@@ -44,7 +65,7 @@ namespace EduNex
                     Late = g.Count(a => a.Status == "Late"),
                     Leave = g.Count(a => a.Status == "Leave"),
                     Total = g.Count(),
-                    Percentage = (g.Count(a => a.Status == "Present") * 100m) / g.Count()
+                    Percentage = g.Count() > 0 ? (g.Count(a => a.Status == "Present") * 100m) / g.Count() : 0
                 }).ToList();
 
             dgvReport.DataSource = report;
@@ -57,7 +78,20 @@ namespace EduNex
 
         private void LoadFeeReport()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var fees = DatabaseHelper.GetAllFees();
+
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                fees = fees.Where(f => studentIds.Contains(f.StudentID)).ToList();
+            }
 
             var report = fees.GroupBy(f => f.StudentName)
                 .Select(g => new
@@ -79,7 +113,20 @@ namespace EduNex
 
         private void LoadExamReport()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var results = DatabaseHelper.GetAllExamResults();
+
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                results = results.Where(r => studentIds.Contains(r.StudentID)).ToList();
+            }
 
             var report = results.GroupBy(r => r.StudentName)
                 .Select(g => new
@@ -102,10 +149,18 @@ namespace EduNex
 
         private void LoadSummaryReport()
         {
-            var students = DatabaseHelper.GetAllStudents();
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            var allStudents = DatabaseHelper.GetAllStudents();
             var attendances = DatabaseHelper.GetAllAttendances();
             var fees = DatabaseHelper.GetAllFees();
             var results = DatabaseHelper.GetAllExamResults();
+
+            // Admin nam okkoma lamai, nethnam teacher ge class eke lamai witharai
+            var students = teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin
+                           ? allStudents.Where(s => s.Class == teacher.Class).ToList()
+                           : allStudents;
 
             var report = students.Select(s => new
             {
@@ -172,6 +227,38 @@ namespace EduNex
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvReport_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Prevent errors if the teacher accidentally clicks the column header (RowIndex -1)
+            if (e.RowIndex >= 0)
+            {
+                // 2. Grab the entire row that was clicked
+                DataGridViewRow row = dgvReport.Rows[e.RowIndex];
+
+                // 3. Extract the student's name (this column exists in all our reports)
+                string studentName = row.Cells["StudentName"].Value?.ToString() ?? "Unknown Student";
+
+                // --- EXAMPLE: Reacting to a specific column click ---
+
+                // Let's say they are on the Summary Report and click the "PendingFees" cell
+                if (dgvReport.Columns[e.ColumnIndex].Name == "PendingFees")
+                {
+                    string pendingAmount = row.Cells["PendingFees"].Value?.ToString();
+
+                    // For now, let's just show a MessageBox. 
+                    MessageBox.Show($"Showing detailed fee history for {studentName}.\nTotal Pending: Rs {pendingAmount}",
+                                    "Fee Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Let's say they click the "ExamAverage" cell
+                else if (dgvReport.Columns[e.ColumnIndex].Name == "ExamAverage")
+                {
+                    MessageBox.Show($"Opening exam breakdown for {studentName}...",
+                                    "Exam Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

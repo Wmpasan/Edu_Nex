@@ -22,12 +22,37 @@ namespace EduNex
             this.Size = new Size(990, 674);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+
+            dgvStudents.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Normal teacher kenek nam witharak class eka lock karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                cmbClass.Text = teacher.Class;
+                cmbClass.Enabled = false;
+            }
+            // Admin nam cmbClass eka open eke thiyenawa ona class ekak select karanna
+
             LoadStudentData();
         }
 
         private void LoadStudentData()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var students = DatabaseHelper.GetAllStudents();
+
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nemei nam witharak class eken filter karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                students = students.Where(s => s.Class == teacher.Class).ToList();
+            }
+
             dgvStudents.DataSource = students;
         }
 

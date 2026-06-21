@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EduNex
@@ -22,12 +24,31 @@ namespace EduNex
             this.Size = new Size(944, 647);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+
+            // Grid text color eka Black karanawa
+            dgvAttendance.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvAttendance.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
             LoadAttendanceData();
         }
 
         private void LoadAttendanceData()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var attendances = DatabaseHelper.GetAllAttendances();
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nemei nam (saha class ekak thiyenawanam) filter karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                attendances = attendances.Where(a => studentIds.Contains(a.StudentID)).ToList();
+            }
+
             dgvAttendance.DataSource = attendances;
         }
 
@@ -52,6 +73,20 @@ namespace EduNex
                 return;
             }
 
+            // --- SECURITY CHECK: Admin nemei nam wena class walata add karanna baha ---
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                if (student.Class != teacher.Class)
+                {
+                    MessageBox.Show($"Access Denied! You can only add attendance for students in the '{teacher.Class}' class.",
+                                    "Class Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             var attendance = new Models.Attendance
             {
                 StudentID = studentId,
@@ -70,7 +105,21 @@ namespace EduNex
 
         private void btnViewByDate_Click(object sender, EventArgs e)
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var attendances = DatabaseHelper.GetAttendanceByDate(dtpAttendanceDate.Value);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Search karaddith admin nemei nam eyage class ekata witharak filter karanawa
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var studentIds = DatabaseHelper.GetAllStudents()
+                                    .Where(s => s.Class == teacher.Class)
+                                    .Select(s => s.StudentID)
+                                    .ToList();
+
+                attendances = attendances.Where(a => studentIds.Contains(a.StudentID)).ToList();
+            }
+
             dgvAttendance.DataSource = attendances;
         }
 
@@ -82,7 +131,22 @@ namespace EduNex
                 return;
             }
 
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             var attendances = DatabaseHelper.GetAttendanceByStudent(studentId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Search karaddith admin nemei nam wena class wala lamai pennanne naha
+            if (teacher != null && !string.IsNullOrEmpty(teacher.Class) && !isAdmin)
+            {
+                var student = DatabaseHelper.GetStudentById(studentId);
+                if (student != null && student.Class != teacher.Class)
+                {
+                    MessageBox.Show("Access Denied! You can only view attendance for students in your class.",
+                                    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             dgvAttendance.DataSource = attendances;
         }
 

@@ -23,6 +23,20 @@ namespace EduNex
             this.Size = new Size(997, 604);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+
+            // Log wela inna user ge details gannawa
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            // Admin nemei nam button eke text ekata lock symbol eka add karanawa
+            if (!isAdmin)
+            {
+                btnClassManagement.Text = "🔒 Class Management";
+            }
+            else
+            {
+                btnClassManagement.Text = "Class Management"; // Admin nam normal penawa
+            }
         }
 
         private void btnStudentManagement_Click(object sender, EventArgs e)
@@ -63,8 +77,24 @@ namespace EduNex
 
         private void btnClassManagement_Click(object sender, EventArgs e)
         {
-            ClassManagementForm classForm = new ClassManagementForm(_teacherId);
-            classForm.Show();
+            // Log wela inna user ge details database eken aran admin da balanawa
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
+            if (isAdmin)
+            {
+                // Admin nam form eka open wenawa
+                ClassManagementForm classForm = new ClassManagementForm(_teacherId);
+                classForm.Show();
+            }
+            else
+            {
+                // Admin nemei nam warning message ekak pennanawa
+                MessageBox.Show("Admin access needed! You do not have permission to access Class Management.",
+                                "Access Denied",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+            }
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
