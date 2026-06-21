@@ -1,59 +1,160 @@
 # EduNex
 
-EduNex — Smart Class Management System (Windows Forms, C#)
+**EduNex — Smart Class Management System** (Windows Forms, C#)
 
-Summary
-- Desktop application built with .NET (WinForms) to manage teachers, students, attendance, fees, exams, notifications and classes.
-- Uses MySQL / MariaDB for persistence. SQL schema file: `database_schema.sql` (root of repo).
-
-Quick links
-- Main code: `DatabaseHelper.cs`, `Program.cs`, `Form1.cs`, `Forms/` folder
-- Models: `Models/` (Teacher, Student, Attendance, ClassFee, ExamResult, Notification, Class)
-- Database schema: `database_schema.sql`
-- Setup guide: `SETUP_GUIDE.md`
-
-Prerequisites (developer)
-- Microsoft Visual Studio Community 2026 (18.6.3) or compatible
-- .NET runtime/SDK used by the project (project targets .NET for Windows)
-- MySQL or MariaDB (XAMPP recommended for local dev)
-- MySql.Data (Connector/NET) NuGet package (used by DatabaseHelper)
-
-Getting started (run locally)
-1. Start MySQL/MariaDB (XAMPP: start Apache and MySQL, then open phpMyAdmin at http://localhost/phpmyadmin).
-2. Import the database schema:
-   - Open `database_schema.sql` and execute in phpMyAdmin (Import) or run:
-	 ```powershell
-	 mysql -u root -p < "C:\Users\Rusiru\Desktop\Edu Nex\database_schema.sql"
-	 ```
-   - Default XAMPP MySQL user: `root` with empty password unless you set one.
-3. Update connection string in `DatabaseHelper.cs` if required:
-   ```csharp
-   private static string _connectionString = "Server=localhost;Database=EduNex;User Id=root;Password=;";
-   ```
-4. Open solution in Visual Studio, restore NuGet packages, build and run (F5).
-
-Admin account
-- The schema inserts a sample admin account:
-  - Email: `admin@example.com`
-  - Password: `admin123`
-- NOTE: Passwords are stored as plaintext in the current code/schema. See `README-DEV.md` for recommended changes (password hashing).
-
-Project structure (high level)
-- Forms/ — WinForms UI code (MainForm, AttendanceForm, StudentForm, FeeForm, ExamForm, NotificationForm, TeacherRegistrationForm, etc.)
-- Models/ — POCO classes (Teacher, Student, Attendance, ClassFee, ExamResult, Notification, Class)
-- DatabaseHelper.cs — central data access layer using MySql.Data
-- database_schema.sql — schema and sample data
-- SETUP_GUIDE.md — step-by-step setup instructions
-
-Notes & recommendations
-- Add a .gitignore to exclude build artifacts (bin/, obj/, .vs/). This repo currently tracks build outputs; consider cleaning and removing them from git history.
-- Migrate plaintext passwords to secure hashing (BCrypt) and update registration/login logic in `DatabaseHelper.cs` and `TeacherRegistrationForm.cs`.
-- Make DatabaseHelper null-safe when reading nullable DB columns (use DBNull checks).
-
-If you want, I can:
-- add a .gitignore and remove tracked build artifacts
-- implement password hashing and update login/registration code
-- create a developer README with more detailed notes
+A desktop application for managing teachers, students, attendance, fees, exams, notifications, and classes.
 
 ---
-Generated on: 2026-06-21
+
+## Overview
+
+- **Tech Stack:** .NET Windows Forms, MySQL/MariaDB, C#
+- **Architecture:** 3-tier (UI, Data Access, Models)
+- **Database:** Consolidated schema in `edunex_schema.sql` with 7 tables and sample data
+
+---
+
+## Repository Structure
+
+```
+C:\Users\Rusiru\Desktop\Edu Nex\
+├── Forms/                          # WinForms UI
+│   ├── MainForm.cs                 # Main dashboard
+│   ├── StudentForm.cs              # Student management
+│   ├── AttendanceForm.cs           # Attendance tracking
+│   ├── FeeForm.cs                  # Fee management
+│   ├── ExamForm.cs                 # Exam results
+│   ├── NotificationForm.cs         # Notifications
+│   ├── TeacherRegistrationForm.cs  # Teacher registration
+│   └── ...
+├── Models/                         # Data models
+│   ├── Teacher.cs
+│   ├── Student.cs
+│   ├── Attendance.cs
+│   ├── ClassFee.cs
+│   ├── ExamResult.cs
+│   ├── Notification.cs
+│   └── Class.cs
+├── DatabaseHelper.cs               # Data access layer
+├── Program.cs                      # Entry point
+├── Form1.cs                        # Login form
+├── edunex_schema.sql               # Database schema
+└── README.md                       # This file
+```
+
+---
+
+## Prerequisites
+
+- **Visual Studio:** 2022, 2026, or compatible
+- **.NET:** Version matching project target
+- **MySQL/MariaDB:** XAMPP (recommended) or standalone server
+- **NuGet:** MySql.Data (Connector/NET)
+
+---
+
+## Quick Start (XAMPP)
+
+### 1. Start MySQL
+
+- Open XAMPP Control Panel → Start **Apache** and **MySQL**
+
+### 2. Import Database Schema
+
+**Option A: phpMyAdmin (GUI)**
+1. Open http://localhost/phpmyadmin
+2. Click **Import** → Choose File → select `edunex_schema.sql` → **Go**
+
+**Option B: CLI (PowerShell)**
+```powershell
+& 'C:\xampp\mysql\bin\mysql.exe' -u root < "C:\Users\Rusiru\Desktop\Edu Nex\edunex_schema.sql"
+```
+(If you have a root password, add `-p` flag and enter it when prompted.)
+
+### 3. Verify Database Connection
+
+Open `DatabaseHelper.cs` and confirm the connection string:
+```csharp
+private static string _connectionString = "Server=localhost;Database=EduNex;User Id=root;Password=;";
+```
+Update if your MySQL root password is different.
+
+### 4. Run the App
+
+1. Open solution in Visual Studio
+2. Restore NuGet packages
+3. Build and run (F5)
+4. Log in with admin credentials (see **Admin Account** below)
+
+---
+
+## Database Schema
+
+The schema creates these tables:
+
+| Table | Purpose |
+|-------|---------|
+| **Teachers** | Teacher accounts and profiles (includes admin) |
+| **Students** | Student information, enrollment, fees |
+| **Classes** | Class definitions, schedules, teacher assignments |
+| **Attendance** | Attendance records per student per date |
+| **ClassFees** | Fee billing and payment tracking |
+| **ExamResults** | Exam scores and grades |
+| **Notifications** | Alerts to parents/guardians |
+
+Foreign keys use `ON DELETE CASCADE` or `ON DELETE SET NULL` for integrity.
+
+---
+
+## Admin Account
+
+**Seeded admin user:**
+- **Email:** `admin@edunex.com`
+- **Password:** `admin123`
+- **Class:** `All` (can manage all classes)
+
+⚠️ **Security:** Passwords are stored as plaintext. Before production, implement password hashing (BCrypt).
+
+---
+
+## Sample Data Included
+
+- **Teachers:** 6 (1 admin, 5 regular teachers)
+- **Students:** 10 (distributed across classes 8-11th grade)
+- **Classes:** 5 (10-A, 10-B, 9-A, 9-B, 11-A)
+- **Attendance:** 5 sample records
+- **Fees:** 5 sample billing records
+- **Exams:** 5 sample results
+- **Notifications:** 5 sample messages
+
+---
+
+## Code Organization
+
+### DatabaseHelper.cs
+Central data access layer. Methods for CRUD operations on each table:
+- `GetTeacherByEmail(email)` — Teacher login
+- `AddStudent(student)` — Insert student
+- `GetAllStudents()` — List active students
+- `AddAttendance(attendance)` — Record attendance
+- Similar methods for Fees, Exams, Notifications, Classes
+
+### Form1.cs (Login)
+- Email validation (regex check with color feedback)
+- Password field
+- Login/Register/Clear buttons
+
+### MainForm.cs (Dashboard)
+- Menu to access Student, Attendance, Fee, Exam, Notification, Class forms
+- Teacher/admin session tracking
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "Unknown database 'EduNex'" | Run `edunex_schema.sql` again or create database manually |
+| "Connection refused" | Verify MySQL service is running; check `Get-Service "MySQL80"` |
+| "Access denied for user 'root'" | Check password in `DatabaseHelper.cs` matches your MySQL root password |
+| App won't start | Restore NuGet packages; verify .NET SDK version |
