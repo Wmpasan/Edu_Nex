@@ -141,7 +141,8 @@ namespace EduNex
             // lblTotalMarks
             // 
             lblTotalMarks.AutoSize = true;
-            lblTotalMarks.Location = new Point(506, 325);
+            lblTotalMarks.BackColor = Color.Transparent;
+            lblTotalMarks.Location = new Point(515, 294);
             lblTotalMarks.Name = "lblTotalMarks";
             lblTotalMarks.Size = new Size(92, 20);
             lblTotalMarks.TabIndex = 10;
@@ -149,7 +150,7 @@ namespace EduNex
             // 
             // txtTotalMarks
             // 
-            txtTotalMarks.Location = new Point(646, 322);
+            txtTotalMarks.Location = new Point(655, 291);
             txtTotalMarks.Name = "txtTotalMarks";
             txtTotalMarks.Size = new Size(120, 27);
             txtTotalMarks.TabIndex = 9;
@@ -187,7 +188,9 @@ namespace EduNex
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(798, 325);
+            btnUpdate.Font = new Font("Segoe UI Semibold", 9F);
+            btnUpdate.ForeColor = Color.Black;
+            btnUpdate.Location = new Point(807, 288);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(135, 30);
             btnUpdate.TabIndex = 5;
@@ -249,10 +252,10 @@ namespace EduNex
             dgvResults.BackgroundColor = Color.DimGray;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResults.GridColor = Color.White;
-            dgvResults.Location = new Point(20, 308);
+            dgvResults.Location = new Point(20, 337);
             dgvResults.Name = "dgvResults";
             dgvResults.RowHeadersWidth = 51;
-            dgvResults.Size = new Size(940, 262);
+            dgvResults.Size = new Size(940, 233);
             dgvResults.TabIndex = 0;
             dgvResults.CellContentClick += dgvResults_CellContentClick;
             dgvResults.SelectionChanged += dgvResults_SelectionChanged;

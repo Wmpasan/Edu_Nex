@@ -21,7 +21,7 @@ namespace EduNex
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
-           dgvResults.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvResults.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
 
             dgvResults.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
 
@@ -41,18 +41,41 @@ namespace EduNex
 
         private void btnAddResult_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(txtStudentId.Text, out int studentId))
+            // 1. Student ID eka check kireema (Spaces thiyenawanam Trim() eken ewa ain karanawa)
+            if (!int.TryParse(txtStudentId.Text.Trim(), out int studentId))
             {
                 MessageBox.Show("Please enter a valid Student ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!decimal.TryParse(txtMarksObtained.Text, out decimal marks) || !decimal.TryParse(txtTotalMarks.Text, out decimal total))
+            // 2. Marks TextBoxes wala thiyena values gannawa
+            string marksText = txtMarksObtained.Text.Trim();
+            string totalText = txtTotalMarks.Text.Trim();
+
+            // 3. Number formatting issues nathi wenna InvariantCulture pawichchi karala parse karanawa
+            bool isMarksValid = decimal.TryParse(marksText, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal marks);
+            bool isTotalValid = decimal.TryParse(totalText, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal total);
+
+            if (!isMarksValid || !isTotalValid)
             {
-                MessageBox.Show("Please enter valid marks", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter valid numbers for marks.\n(Make sure there are no letters or special characters)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // 4. Logical Checks: Total eka 0 wenna baha, Marks > Total wenna baha
+            if (total <= 0)
+            {
+                MessageBox.Show("Total marks must be greater than 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (marks < 0 || marks > total)
+            {
+                MessageBox.Show($"Marks obtained ({marks}) cannot be less than 0 or greater than Total marks ({total}).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 5. Student wa database eken gannawa
             var student = DatabaseHelper.GetStudentById(studentId);
             if (student == null)
             {
@@ -60,9 +83,11 @@ namespace EduNex
                 return;
             }
 
+            // 6. Percentage eka calculate karala Grade eka hadanawa
             decimal percentage = (marks / total) * 100;
             string grade = CalculateGrade(percentage);
 
+            // 7. Result eka Database ekata save karanawa
             var result = new Models.ExamResult
             {
                 StudentID = studentId,
@@ -74,7 +99,7 @@ namespace EduNex
                 Percentage = percentage,
                 Grade = grade,
                 ExamDate = dtpExamDate.Value,
-                TeacherID = _teacherId
+                TeacherID = _teacherId // Logged-in teacher ge ID eka
             };
 
             DatabaseHelper.AddExamResult(result);
@@ -187,6 +212,11 @@ namespace EduNex
         }
 
         private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtTotalMarks_TextChanged(object sender, EventArgs e)
         {
 
         }
