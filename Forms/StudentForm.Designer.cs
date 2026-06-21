@@ -159,9 +159,12 @@ namespace EduNex
             // lblAddress
             // 
             lblAddress.AutoSize = true;
+            lblAddress.BackColor = Color.Transparent;
+            lblAddress.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAddress.ForeColor = Color.White;
             lblAddress.Location = new Point(652, 151);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(65, 20);
+            lblAddress.Size = new Size(67, 20);
             lblAddress.TabIndex = 18;
             lblAddress.Text = "Address:";
             // 
