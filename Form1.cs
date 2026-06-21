@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace EduNex
 {
     public partial class Form1 : Form
@@ -60,6 +62,35 @@ namespace EduNex
         {
             TeacherRegistrationForm registrationForm = new TeacherRegistrationForm();
             registrationForm.ShowDialog();
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text;
+
+            // Standard Regex pattern for email validation
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            // 1. If the box is empty, reset to default (don't show an error yet)
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                txtEmail.BackColor = SystemColors.Window;
+            }
+            // 2. If the email matches the pattern, indicate success (e.g., Light Green)
+            else if (Regex.IsMatch(email, pattern))
+            {
+                txtEmail.BackColor = Color.LightGreen;
+            }
+            // 3. If the user is typing and it's not valid yet, indicate an error (e.g., Light Pink)
+            else
+            {
+                txtEmail.BackColor = Color.LightPink;
+            }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

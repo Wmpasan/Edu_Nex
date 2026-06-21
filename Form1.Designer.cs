@@ -65,6 +65,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(250, 27);
             txtEmail.TabIndex = 2;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // lblPassword
             // 
@@ -85,6 +86,7 @@
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(250, 27);
             txtPassword.TabIndex = 4;
+            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // btnLogin
             // 

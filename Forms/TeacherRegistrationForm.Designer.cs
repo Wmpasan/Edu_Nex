@@ -55,6 +55,8 @@ namespace EduNex
             btnCancel = new Button();
             label1 = new Label();
             label2 = new Label();
+            lblEmailError = new Label();
+            lblStrength = new Label();
             SuspendLayout();
             // 
             // lblName
@@ -75,6 +77,7 @@ namespace EduNex
             txtName.Name = "txtName";
             txtName.Size = new Size(200, 27);
             txtName.TabIndex = 15;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // lblEmail
             // 
@@ -94,6 +97,7 @@ namespace EduNex
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(200, 27);
             txtEmail.TabIndex = 13;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // lblPassword
             // 
@@ -126,7 +130,6 @@ namespace EduNex
             lblConfirmPassword.Size = new Size(140, 20);
             lblConfirmPassword.TabIndex = 10;
             lblConfirmPassword.Text = "Confirm Password :";
-            lblConfirmPassword.Click += lblConfirmPassword_Click;
             // 
             // txtConfirmPassword
             // 
@@ -135,6 +138,7 @@ namespace EduNex
             txtConfirmPassword.PasswordChar = '*';
             txtConfirmPassword.Size = new Size(200, 27);
             txtConfirmPassword.TabIndex = 9;
+            txtConfirmPassword.TextChanged += txtConfirmPassword_TextChanged;
             // 
             // lblPhoneNumber
             // 
@@ -154,6 +158,7 @@ namespace EduNex
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(200, 27);
             txtPhoneNumber.TabIndex = 7;
+            txtPhoneNumber.TextChanged += txtPhoneNumber_TextChanged;
             // 
             // lblSubject
             // 
@@ -175,6 +180,7 @@ namespace EduNex
             cmbSubject.Name = "cmbSubject";
             cmbSubject.Size = new Size(200, 28);
             cmbSubject.TabIndex = 5;
+            cmbSubject.SelectedIndexChanged += cmbSubject_SelectedIndexChanged;
             // 
             // lblClass
             // 
@@ -196,9 +202,11 @@ namespace EduNex
             cmbClass.Name = "cmbClass";
             cmbClass.Size = new Size(200, 28);
             cmbClass.TabIndex = 3;
+            cmbClass.SelectedIndexChanged += cmbClass_SelectedIndexChanged;
             // 
             // btnRegister
             // 
+            btnRegister.Enabled = false;
             btnRegister.Location = new Point(224, 456);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(100, 40);
@@ -251,10 +259,34 @@ namespace EduNex
             label2.TabIndex = 18;
             label2.Text = " Teacher Registration";
             // 
+            // lblEmailError
+            // 
+            lblEmailError.AutoSize = true;
+            lblEmailError.BackColor = Color.Transparent;
+            lblEmailError.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblEmailError.ForeColor = Color.White;
+            lblEmailError.Location = new Point(404, 418);
+            lblEmailError.Name = "lblEmailError";
+            lblEmailError.Size = new Size(0, 20);
+            lblEmailError.TabIndex = 19;
+            // 
+            // lblStrength
+            // 
+            lblStrength.AutoSize = true;
+            lblStrength.BackColor = Color.Transparent;
+            lblStrength.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblStrength.ForeColor = Color.White;
+            lblStrength.Location = new Point(398, 418);
+            lblStrength.Name = "lblStrength";
+            lblStrength.Size = new Size(0, 20);
+            lblStrength.TabIndex = 20;
+            // 
             // TeacherRegistrationForm
             // 
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(827, 536);
+            Controls.Add(lblStrength);
+            Controls.Add(lblEmailError);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnCancel);
@@ -287,5 +319,7 @@ namespace EduNex
 
         private Label label1;
         private Label label2;
+        private Label lblEmailError;
+        private Label lblStrength;
     }
 }
