@@ -1,5 +1,5 @@
 -- ==========================================
--- Ready for import to XAMPP / phpMyAdmi
+-- Ready for import to XAMPP / phpMyAdmin
 -- ==========================================
 
 CREATE DATABASE IF NOT EXISTS `EduNex` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
@@ -32,7 +32,7 @@ INSERT INTO `Teachers` (`TeacherID`,`Name`,`Email`,`Password`,`PhoneNumber`,`Sub
 (3,'Carol Williams','carol.williams@edunex.com','hash_pass_3','555-1003','English','8th','2021-03-10',1),
 (4,'David Brown','david.brown@edunex.com','hash_pass_4','555-1004','History','10th','2018-11-05',1),
 (5,'Eva Davis','eva.davis@edunex.com','hash_pass_5','555-1005','Computer Science','11th','2022-07-22',1),
-(6,'Admin Pasan','admin@edunex.com','admin123','0771234567','Class Management','All','2026-06-21',1);
+(6,'Admin','admin@edunex.com','admin123','0771234567','Class Management','All','2026-06-21',1);
 
 ALTER TABLE `Teachers` AUTO_INCREMENT = 7;
 

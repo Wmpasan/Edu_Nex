@@ -10,7 +10,7 @@ A desktop application for managing teachers, students, attendance, fees, exams, 
 
 - **Tech Stack:** .NET Windows Forms, MySQL/MariaDB, C#
 - **Architecture:** 3-tier (UI, Data Access, Models)
-- **Database:** Consolidated schema in `edunex_schema.sql` with 7 tables and sample data
+- **Database:** Consolidated schema in `Visual Programming Group 16 - Edu Nex_schema.sql` with 7 tables and sample data
 
 ---
 
@@ -38,7 +38,7 @@ C:\Users\Rusiru\Desktop\Edu Nex\
 ├── DatabaseHelper.cs               # Data access layer
 ├── Program.cs                      # Entry point
 ├── Form1.cs                        # Login form
-├── edunex_schema.sql               # Database schema
+├── Visual Programming Group 16 - Edu Nex_schema.sql  # Database schema
 └── README.md                       # This file
 ```
 
@@ -63,11 +63,11 @@ C:\Users\Rusiru\Desktop\Edu Nex\
 
 **Option A: phpMyAdmin (GUI)**
 1. Open http://localhost/phpmyadmin
-2. Click **Import** → Choose File → select `edunex_schema.sql` → **Go**
+2. Click **Import** → Choose File → select `Visual Programming Group 16 - Edu Nex_schema.sql` → **Go**
 
 **Option B: CLI (PowerShell)**
 ```powershell
-& 'C:\xampp\mysql\bin\mysql.exe' -u root < "C:\Users\Rusiru\Desktop\Edu Nex\edunex_schema.sql"
+& 'C:\xampp\mysql\bin\mysql.exe' -u root < "C:\Users\Rusiru\Desktop\Edu Nex\Visual Programming Group 16 - Edu Nex_schema.sql"
 ```
 (If you have a root password, add `-p` flag and enter it when prompted.)
 
@@ -154,7 +154,7 @@ Central data access layer. Methods for CRUD operations on each table:
 
 | Issue | Solution |
 |-------|----------|
-| "Unknown database 'EduNex'" | Run `edunex_schema.sql` again or create database manually |
+| "Unknown database 'EduNex'" | Run `Visual Programming Group 16 - Edu Nex_schema.sql` again or create database manually |
 | "Connection refused" | Verify MySQL service is running; check `Get-Service "MySQL80"` |
 | "Access denied for user 'root'" | Check password in `DatabaseHelper.cs` matches your MySQL root password |
 | App won't start | Restore NuGet packages; verify .NET SDK version |
