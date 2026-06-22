@@ -24,18 +24,18 @@ namespace EduNex
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
-            // Log wela inna user ge details gannawa
+            // Getting thedetails of the user who loggedini
             var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             bool isAdmin = teacher != null && teacher.Subject == "Class Management";
 
-            // Admin nemei nam button eke text ekata lock symbol eka add karanawa
+            // If it is not an admin add the lock symbol to the button
             if (!isAdmin)
             {
                 btnClassManagement.Text = "🔒 Class Management";
             }
             else
             {
-                btnClassManagement.Text = "Class Management"; // Admin nam normal penawa
+                btnClassManagement.Text = "Class Management"; // if it is only admin show it normal
             }
         }
 
@@ -77,19 +77,19 @@ namespace EduNex
 
         private void btnClassManagement_Click(object sender, EventArgs e)
         {
-            // Log wela inna user ge details database eken aran admin da balanawa
+            // Getting the info of the user from the database and check whether it is an admin
             var teacher = DatabaseHelper.GetTeacherById(_teacherId);
             bool isAdmin = teacher != null && teacher.Subject == "Class Management";
 
             if (isAdmin)
             {
-                // Admin nam form eka open wenawa
+                // If it is an admin form opens
                 ClassManagementForm classForm = new ClassManagementForm(_teacherId);
                 classForm.Show();
             }
             else
             {
-                // Admin nemei nam warning message ekak pennanawa
+                // If it is not an admin warning msg shown
                 MessageBox.Show("Admin access needed! You do not have permission to access Class Management.",
                                 "Access Denied",
                                 MessageBoxButtons.OK,
