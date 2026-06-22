@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EduNex
@@ -30,7 +32,9 @@ namespace EduNex
 
         private void PopulateTeacherDropdown()
         {
-            var teachers = DatabaseHelper.GetAllTeachers();
+            var teachers = DatabaseHelper.GetAllTeachers()
+                .Where(t => t.Subject != "Class Management")
+                .ToList();
             cmbClassTeacher.DataSource = teachers;
             cmbClassTeacher.DisplayMember = "Name";
             cmbClassTeacher.ValueMember = "TeacherID";
@@ -52,12 +56,13 @@ namespace EduNex
                 return;
             }
 
+            var selectedTeacher = cmbClassTeacher.SelectedItem as Models.Teacher;
             var classObj = new Models.Class
             {
                 ClassName = txtClassName.Text,
                 Section = txtSection.Text,
-                ClassTeacherID = (int)cmbClassTeacher.SelectedValue,
-                ClassTeacherName = cmbClassTeacher.SelectedText,
+                ClassTeacherID = selectedTeacher?.TeacherID ?? 0,
+                ClassTeacherName = selectedTeacher?.Name ?? "",
                 TotalStudents = int.TryParse(txtTotalStudents.Text, out int total) ? total : 0,
                 Room = txtRoom.Text,
                 Schedule = txtSchedule.Text,
@@ -84,10 +89,11 @@ namespace EduNex
                 var classObj = DatabaseHelper.GetClassById(classId);
                 if (classObj != null)
                 {
+                    var selectedTeacher = cmbClassTeacher.SelectedItem as Models.Teacher;
                     classObj.ClassName = txtClassName.Text;
                     classObj.Section = txtSection.Text;
-                    classObj.ClassTeacherID = (int)cmbClassTeacher.SelectedValue;
-                    classObj.ClassTeacherName = cmbClassTeacher.SelectedText;
+                    classObj.ClassTeacherID = selectedTeacher?.TeacherID ?? 0;
+                    classObj.ClassTeacherName = selectedTeacher?.Name ?? "";
                     classObj.TotalStudents = int.TryParse(txtTotalStudents.Text, out int total) ? total : 0;
                     classObj.Room = txtRoom.Text;
                     classObj.Schedule = txtSchedule.Text;
@@ -136,6 +142,15 @@ namespace EduNex
                 txtRoom.Text = row.Cells[6].Value?.ToString() ?? "";
                 txtSchedule.Text = row.Cells[7].Value?.ToString() ?? "";
                 txtTotalStudents.Text = row.Cells[5].Value?.ToString() ?? "0";
+
+                if (row.Cells[4].Value != null && int.TryParse(row.Cells[4].Value.ToString(), out int teacherId))
+                {
+                    cmbClassTeacher.SelectedValue = teacherId;
+                }
+                else
+                {
+                    cmbClassTeacher.SelectedIndex = -1;
+                }
             }
         }
 

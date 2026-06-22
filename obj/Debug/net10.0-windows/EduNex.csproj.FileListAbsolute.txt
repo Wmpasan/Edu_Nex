@@ -1,44 +1,82 @@
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\EduNex.exe
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\EduNex.deps.json
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\EduNex.runtimeconfig.json
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\EduNex.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\EduNex.pdb
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\BouncyCastle.Cryptography.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\Google.Protobuf.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\K4os.Compression.LZ4.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\K4os.Hash.xxHash.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\MySql.Data.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\ZstdSharp.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\comerr64.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\gssapi64.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\k5sprt64.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\krb5_64.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\krbcc64.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.AssemblyReference.cache
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.Form1.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.GenerateResource.cache
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.AssemblyInfoInputs.cache
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.AssemblyInfo.cs
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.CoreCompileInputs.cache
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.sourcelink.json
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.Up2Date
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\refint\EduNex.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.pdb
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.genruntimeconfig.cache
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\ref\EduNex.dll
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.Properties.Resources.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.TeacherRegistrationForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.AttendanceForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ClassManagementForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ExamForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.FeeForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.MainForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.NotificationForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.ReportForm.resources
-C:\Users\Pasan\Documents\EduNex 5\EduNex\obj\Debug\net10.0-windows\EduNex.StudentForm.resources
-C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\EduNex.dll
-C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\refint\EduNex.dll
-C:\Users\Rusiru\Desktop\Edu Nex\obj\Debug\net10.0-windows\EduNex.pdb
+C:\temp_build\bin\Debug\net10.0-windows\EduNex.exe
+C:\temp_build\bin\Debug\net10.0-windows\EduNex.deps.json
+C:\temp_build\bin\Debug\net10.0-windows\EduNex.runtimeconfig.json
+C:\temp_build\bin\Debug\net10.0-windows\EduNex.dll
+C:\temp_build\bin\Debug\net10.0-windows\EduNex.pdb
+C:\temp_build\bin\Debug\net10.0-windows\BouncyCastle.Cryptography.dll
+C:\temp_build\bin\Debug\net10.0-windows\Google.Protobuf.dll
+C:\temp_build\bin\Debug\net10.0-windows\K4os.Compression.LZ4.dll
+C:\temp_build\bin\Debug\net10.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\temp_build\bin\Debug\net10.0-windows\K4os.Hash.xxHash.dll
+C:\temp_build\bin\Debug\net10.0-windows\MySql.Data.dll
+C:\temp_build\bin\Debug\net10.0-windows\ZstdSharp.dll
+C:\temp_build\bin\Debug\net10.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\temp_build\bin\Debug\net10.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\temp_build\bin\Debug\net10.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\temp_build\bin\Debug\net10.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\temp_build\bin\Debug\net10.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.csproj.AssemblyReference.cache
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.Form1.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.AttendanceForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.ClassManagementForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.ExamForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.FeeForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.MainForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.NotificationForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.ReportForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.StudentForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.TeacherRegistrationForm.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.Properties.Resources.resources
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.csproj.GenerateResource.cache
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.AssemblyInfoInputs.cache
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.AssemblyInfo.cs
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.csproj.CoreCompileInputs.cache
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.sourcelink.json
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.csproj.Up2Date
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.dll
+C:\temp_build\obj\Debug\net10.0-windows\refint\EduNex.dll
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.pdb
+C:\temp_build\obj\Debug\net10.0-windows\EduNex.genruntimeconfig.cache
+C:\temp_build\obj\Debug\net10.0-windows\ref\EduNex.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\EduNex.exe
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\EduNex.deps.json
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\EduNex.runtimeconfig.json
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\EduNex.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\EduNex.pdb
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\Google.Protobuf.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\K4os.Compression.LZ4.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\K4os.Hash.xxHash.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\MySql.Data.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\ZstdSharp.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\Rusiru\Desktop\EduNex\bin\Debug\net10.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.AssemblyReference.cache
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.Form1.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.AttendanceForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.ClassManagementForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.ExamForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.FeeForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.MainForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.NotificationForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.ReportForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.StudentForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.TeacherRegistrationForm.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.Properties.Resources.resources
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.GenerateResource.cache
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.AssemblyInfoInputs.cache
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.AssemblyInfo.cs
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.CoreCompileInputs.cache
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.sourcelink.json
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.csproj.Up2Date
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.dll
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\refint\EduNex.dll
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.pdb
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\EduNex.genruntimeconfig.cache
+C:\Users\Rusiru\Desktop\EduNex\obj\Debug\net10.0-windows\ref\EduNex.dll

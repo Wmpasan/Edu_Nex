@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EduNex
@@ -26,7 +27,17 @@ namespace EduNex
 
         private void LoadNotifications()
         {
+            var teacher = DatabaseHelper.GetTeacherById(_teacherId);
+            bool isAdmin = teacher != null && teacher.Subject == "Class Management";
+
             var notifications = DatabaseHelper.GetAllNotifications();
+
+            // Admin sees all notifications, others see only their own
+            if (!isAdmin)
+            {
+                notifications = notifications.Where(n => n.TeacherID == _teacherId).ToList();
+            }
+
             dgvNotifications.DataSource = notifications;
         }
 

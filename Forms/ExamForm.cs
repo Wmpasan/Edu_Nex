@@ -196,6 +196,7 @@ namespace EduNex
             txtMarksObtained.Clear();
             txtTotalMarks.Clear();
             dtpExamDate.Value = DateTime.Now;
+            dgvResults.ClearSelection();
         }
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)

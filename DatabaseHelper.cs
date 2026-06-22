@@ -124,7 +124,7 @@ namespace EduNex
             return null;
         }
 
-        public static void UpdateStudent(Models.Student student)
+        public static bool UpdateStudent(Models.Student student)
         {
             try
             {
@@ -153,10 +153,15 @@ namespace EduNex
                     cmd.Parameters.AddWithValue("@MonthlyFee", student.MonthlyFee);
                     cmd.Parameters.AddWithValue("@IsActive", student.IsActive);
 
-                    cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Error updating student: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating student: " + ex.Message);
+                return false;
+            }
         }
 
         public static void DeleteStudent(int studentId)
@@ -385,7 +390,8 @@ namespace EduNex
                                 StudentName = r["StudentName"].ToString(),
                                 AttendanceDate = Convert.ToDateTime(r["AttendanceDate"]),
                                 Status = r["Status"].ToString(),
-                                Remarks = r["Remarks"].ToString()
+                                Remarks = r["Remarks"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -416,7 +422,8 @@ namespace EduNex
                                 StudentName = r["StudentName"].ToString(),
                                 AttendanceDate = Convert.ToDateTime(r["AttendanceDate"]),
                                 Status = r["Status"].ToString(),
-                                Remarks = r["Remarks"].ToString()
+                                Remarks = r["Remarks"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -445,7 +452,8 @@ namespace EduNex
                                 StudentName = r["StudentName"].ToString(),
                                 AttendanceDate = Convert.ToDateTime(r["AttendanceDate"]),
                                 Status = r["Status"].ToString(),
-                                Remarks = r["Remarks"].ToString()
+                                Remarks = r["Remarks"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -534,7 +542,8 @@ namespace EduNex
                                 DueDate = Convert.ToDateTime(r["DueDate"]),
                                 PaidDate = r["PaidDate"] != DBNull.Value ? Convert.ToDateTime(r["PaidDate"]) : DateTime.MinValue,
                                 Status = r["Status"].ToString(),
-                                Description = r["Description"].ToString()
+                                Description = r["Description"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -564,7 +573,8 @@ namespace EduNex
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 StudentName = r["StudentName"].ToString(),
                                 Amount = Convert.ToDecimal(r["Amount"]),
-                                Status = r["Status"].ToString()
+                                Status = r["Status"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -594,7 +604,8 @@ namespace EduNex
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 StudentName = r["StudentName"].ToString(),
                                 Amount = Convert.ToDecimal(r["Amount"]),
-                                Status = r["Status"].ToString()
+                                Status = r["Status"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -611,15 +622,38 @@ namespace EduNex
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE ClassFees SET Status = @Status, PaidDate = @Paid WHERE FeeID = @FID";
+                    // Update all mutable columns – this keeps TeacherID in sync and guarantees a row write
+                    string query = @"UPDATE ClassFees SET
+                        StudentID   = @SID,
+                        StudentName = @SName,
+                        Amount      = @Amt,
+                        DueDate     = @Due,
+                        PaidDate    = @Paid,
+                        Status      = @Stat,
+                        Description = @Desc,
+                        TeacherID   = @TID
+                    WHERE FeeID = @FID";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@FID", fee.FeeID);
-                    cmd.Parameters.AddWithValue("@Status", fee.Status);
+                    cmd.Parameters.AddWithValue("@SID", fee.StudentID);
+                    cmd.Parameters.AddWithValue("@SName", fee.StudentName ?? "");
+                    cmd.Parameters.AddWithValue("@Amt", fee.Amount);
+                    cmd.Parameters.AddWithValue("@Due", fee.DueDate);
                     cmd.Parameters.AddWithValue("@Paid", fee.PaidDate != DateTime.MinValue ? fee.PaidDate : (object)DBNull.Value);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@Stat", fee.Status ?? "Pending");
+                    cmd.Parameters.AddWithValue("@Desc", fee.Description ?? "");
+                    cmd.Parameters.AddWithValue("@TID", fee.TeacherID);
+                    int rows = cmd.ExecuteNonQuery();
+                    if (rows > 0)
+                        MessageBox.Show($"Fee record updated successfully (rows affected: {rows})", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Update executed but no rows were affected – check the FeeID.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            catch (Exception ex) {
+                // Show the exact DB error – helpful for debugging why an UPDATE fails
+                MessageBox.Show("Database update failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public static void DeleteFee(int feeId)
@@ -689,7 +723,8 @@ namespace EduNex
                                 TotalMarks = Convert.ToDecimal(r["TotalMarks"]),
                                 Percentage = Convert.ToDecimal(r["Percentage"]),
                                 Grade = r["Grade"].ToString(),
-                                ExamDate = Convert.ToDateTime(r["ExamDate"])
+                                ExamDate = Convert.ToDateTime(r["ExamDate"]),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -727,7 +762,8 @@ namespace EduNex
                                 TotalMarks = Convert.ToDecimal(r["TotalMarks"]),
                                 Percentage = Convert.ToDecimal(r["Percentage"]),
                                 Grade = r["Grade"].ToString(),
-                                ExamDate = Convert.ToDateTime(r["ExamDate"])
+                                ExamDate = Convert.ToDateTime(r["ExamDate"]),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -757,7 +793,8 @@ namespace EduNex
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 ExamName = r["ExamName"].ToString(),
                                 Percentage = Convert.ToDecimal(r["Percentage"]),
-                                Grade = r["Grade"].ToString()
+                                Grade = r["Grade"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -787,7 +824,8 @@ namespace EduNex
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 StudentName = r["StudentName"].ToString(),
                                 Percentage = Convert.ToDecimal(r["Percentage"]),
-                                Grade = r["Grade"].ToString()
+                                Grade = r["Grade"].ToString(),
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -876,9 +914,13 @@ namespace EduNex
                                 NotificationID = Convert.ToInt32(r["NotificationID"]),
                                 StudentID = Convert.ToInt32(r["StudentID"]),
                                 StudentName = r["StudentName"].ToString(),
+                                ParentEmail = r["ParentEmail"] != DBNull.Value ? r["ParentEmail"].ToString() : "",
+                                ParentPhoneNumber = r["ParentPhoneNumber"] != DBNull.Value ? r["ParentPhoneNumber"].ToString() : "",
                                 Message = r["Message"].ToString(),
+                                NotificationType = r["NotificationType"].ToString(),
+                                SentDate = r["SentDate"] != DBNull.Value ? Convert.ToDateTime(r["SentDate"]) : DateTime.MinValue,
                                 IsSent = Convert.ToBoolean(r["IsSent"]),
-                                NotificationType = r["NotificationType"].ToString()
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -904,8 +946,14 @@ namespace EduNex
                             list.Add(new Models.Notification {
                                 NotificationID = Convert.ToInt32(r["NotificationID"]),
                                 StudentID = Convert.ToInt32(r["StudentID"]),
+                                StudentName = r["StudentName"] != DBNull.Value ? r["StudentName"].ToString() : "",
+                                ParentEmail = r["ParentEmail"] != DBNull.Value ? r["ParentEmail"].ToString() : "",
+                                ParentPhoneNumber = r["ParentPhoneNumber"] != DBNull.Value ? r["ParentPhoneNumber"].ToString() : "",
                                 Message = r["Message"].ToString(),
-                                IsSent = false
+                                NotificationType = r["NotificationType"].ToString(),
+                                SentDate = r["SentDate"] != DBNull.Value ? Convert.ToDateTime(r["SentDate"]) : DateTime.MinValue,
+                                IsSent = false,
+                                TeacherID = r["TeacherID"] != DBNull.Value ? Convert.ToInt32(r["TeacherID"]) : 0
                             });
                         }
                     }
@@ -980,7 +1028,10 @@ namespace EduNex
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT * FROM Classes", conn);
+                    string query = @"SELECT c.*, t.Name AS ActualTeacherName 
+                                     FROM Classes c 
+                                     LEFT JOIN Teachers t ON c.ClassTeacherID = t.TeacherID";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
                     using (MySqlDataReader r = cmd.ExecuteReader())
                     {
                         while (r.Read())
@@ -989,8 +1040,12 @@ namespace EduNex
                                 ClassID = Convert.ToInt32(r["ClassID"]),
                                 ClassName = r["ClassName"].ToString(),
                                 Section = r["Section"].ToString(),
-                                ClassTeacherName = r["ClassTeacherName"].ToString(),
+                                ClassTeacherName = r["ActualTeacherName"] != DBNull.Value ? r["ActualTeacherName"].ToString() : (r["ClassTeacherName"] != DBNull.Value ? r["ClassTeacherName"].ToString() : ""),
+                                ClassTeacherID = r["ClassTeacherID"] != DBNull.Value ? Convert.ToInt32(r["ClassTeacherID"]) : 0,
                                 TotalStudents = Convert.ToInt32(r["TotalStudents"]),
+                                Room = r["Room"] != DBNull.Value ? r["Room"].ToString() : "",
+                                Schedule = r["Schedule"] != DBNull.Value ? r["Schedule"].ToString() : "",
+                                CreatedDate = r["CreatedDate"] != DBNull.Value ? Convert.ToDateTime(r["CreatedDate"]) : DateTime.MinValue,
                                 IsActive = Convert.ToBoolean(r["IsActive"])
                             });
                         }
@@ -1008,7 +1063,10 @@ namespace EduNex
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Classes WHERE ClassID = @CID";
+                    string query = @"SELECT c.*, t.Name AS ActualTeacherName 
+                                     FROM Classes c 
+                                     LEFT JOIN Teachers t ON c.ClassTeacherID = t.TeacherID 
+                                     WHERE c.ClassID = @CID";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@CID", classId);
                     using (MySqlDataReader r = cmd.ExecuteReader())
@@ -1017,7 +1075,14 @@ namespace EduNex
                             return new Models.Class {
                                 ClassID = Convert.ToInt32(r["ClassID"]),
                                 ClassName = r["ClassName"].ToString(),
-                                Section = r["Section"].ToString()
+                                Section = r["Section"].ToString(),
+                                ClassTeacherName = r["ActualTeacherName"] != DBNull.Value ? r["ActualTeacherName"].ToString() : (r["ClassTeacherName"] != DBNull.Value ? r["ClassTeacherName"].ToString() : ""),
+                                ClassTeacherID = r["ClassTeacherID"] != DBNull.Value ? Convert.ToInt32(r["ClassTeacherID"]) : 0,
+                                TotalStudents = Convert.ToInt32(r["TotalStudents"]),
+                                Room = r["Room"] != DBNull.Value ? r["Room"].ToString() : "",
+                                Schedule = r["Schedule"] != DBNull.Value ? r["Schedule"].ToString() : "",
+                                CreatedDate = r["CreatedDate"] != DBNull.Value ? Convert.ToDateTime(r["CreatedDate"]) : DateTime.MinValue,
+                                IsActive = Convert.ToBoolean(r["IsActive"])
                             };
                     }
                 }
@@ -1033,7 +1098,10 @@ namespace EduNex
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Classes WHERE ClassName = @Name";
+                    string query = @"SELECT c.*, t.Name AS ActualTeacherName 
+                                     FROM Classes c 
+                                     LEFT JOIN Teachers t ON c.ClassTeacherID = t.TeacherID 
+                                     WHERE c.ClassName = @Name";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", className);
                     using (MySqlDataReader r = cmd.ExecuteReader())
@@ -1042,7 +1110,14 @@ namespace EduNex
                             return new Models.Class {
                                 ClassID = Convert.ToInt32(r["ClassID"]),
                                 ClassName = r["ClassName"].ToString(),
-                                Section = r["Section"].ToString()
+                                Section = r["Section"].ToString(),
+                                ClassTeacherName = r["ActualTeacherName"] != DBNull.Value ? r["ActualTeacherName"].ToString() : (r["ClassTeacherName"] != DBNull.Value ? r["ClassTeacherName"].ToString() : ""),
+                                ClassTeacherID = r["ClassTeacherID"] != DBNull.Value ? Convert.ToInt32(r["ClassTeacherID"]) : 0,
+                                TotalStudents = Convert.ToInt32(r["TotalStudents"]),
+                                Room = r["Room"] != DBNull.Value ? r["Room"].ToString() : "",
+                                Schedule = r["Schedule"] != DBNull.Value ? r["Schedule"].ToString() : "",
+                                CreatedDate = r["CreatedDate"] != DBNull.Value ? Convert.ToDateTime(r["CreatedDate"]) : DateTime.MinValue,
+                                IsActive = Convert.ToBoolean(r["IsActive"])
                             };
                     }
                 }

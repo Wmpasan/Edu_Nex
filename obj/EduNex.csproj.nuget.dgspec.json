@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pasan\\Documents\\EduNex 5\\EduNex\\EduNex.csproj": {}
+    "C:\\Users\\Rusiru\\Desktop\\EduNex\\EduNex.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pasan\\Documents\\EduNex 5\\EduNex\\EduNex.csproj": {
+    "C:\\Users\\Rusiru\\Desktop\\EduNex\\EduNex.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pasan\\Documents\\EduNex 5\\EduNex\\EduNex.csproj",
+        "projectUniqueName": "C:\\Users\\Rusiru\\Desktop\\EduNex\\EduNex.csproj",
         "projectName": "EduNex",
-        "projectPath": "C:\\Users\\Pasan\\Documents\\EduNex 5\\EduNex\\EduNex.csproj",
-        "packagesPath": "C:\\Users\\Pasan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pasan\\Documents\\EduNex 5\\EduNex\\obj\\",
+        "projectPath": "C:\\Users\\Rusiru\\Desktop\\EduNex\\EduNex.csproj",
+        "packagesPath": "C:\\Users\\Rusiru\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rusiru\\Desktop\\EduNex\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Pasan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rusiru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

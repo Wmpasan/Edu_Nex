@@ -113,19 +113,42 @@ namespace EduNex
                 return;
             }
 
-            if (int.TryParse(dgvFees.SelectedRows[0].Cells[0].Value.ToString(), out int feeId))
+            if (!decimal.TryParse(txtAmount.Text, out decimal amount) || amount <= 0)
             {
-                var fee = DatabaseHelper.GetAllFees().Find(f => f.FeeID == feeId);
-                if (fee != null && decimal.TryParse(txtAmount.Text, out decimal amount))
-                {
-                    fee.Status = cmbStatus.SelectedItem?.ToString() ?? "Pending";
-                    fee.PaidDate = cmbStatus.SelectedItem?.ToString() == "Paid" ? dtpPaidDate.Value : DateTime.MinValue;
-                    DatabaseHelper.UpdateFee(fee);
-                    MessageBox.Show("Fee record updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadFeeData();
-                    ClearFields();
-                }
+                MessageBox.Show("Please enter a valid amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            if (!int.TryParse(dgvFees.SelectedRows[0].Cells[0].Value.ToString(), out int feeId))
+            {
+                MessageBox.Show("Could not read the Fee ID from the selected row", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var fee = DatabaseHelper.GetAllFees().Find(f => f.FeeID == feeId);
+            if (fee == null)
+            {
+                MessageBox.Show("Fee record not found in the database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Apply all form field values to the fee object
+            if (int.TryParse(txtStudentId.Text, out int studentId))
+            {
+                fee.StudentID = studentId;
+                var student = DatabaseHelper.GetStudentById(studentId);
+                if (student != null)
+                    fee.StudentName = student.Name;
+            }
+            fee.Amount = amount;
+            fee.DueDate = dtpDueDate.Value;
+            fee.Description = txtDescription.Text;
+            fee.Status = cmbStatus.SelectedItem?.ToString() ?? "Pending";
+            fee.PaidDate = cmbStatus.SelectedItem?.ToString() == "Paid" ? dtpPaidDate.Value : DateTime.MinValue;
+
+            DatabaseHelper.UpdateFee(fee);
+            LoadFeeData();
+            ClearFields();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
